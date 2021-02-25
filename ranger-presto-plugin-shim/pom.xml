@@ -37,8 +37,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.prestosql</groupId>
-            <artifactId>presto-spi</artifactId>
+            <groupId>io.trino</groupId>
+            <artifactId>trino-spi</artifactId>
             <version>${presto.version}</version>
         </dependency>
         <dependency>

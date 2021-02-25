@@ -41,7 +41,7 @@
    <fileSets>
     <fileSet>
         <outputDirectory></outputDirectory>
-        <directory>sampleapp/scripts</directory>
+        <directory>../sampleapp/scripts</directory>
 		<includes>
 			<include>*.sh</include>
 		</includes>
@@ -49,7 +49,7 @@
     </fileSet>
     <fileSet>
         <outputDirectory>conf</outputDirectory>
-        <directory>sampleapp/conf</directory>
+        <directory>../sampleapp/conf</directory>
         <fileMode>644</fileMode>
     </fileSet>
    </fileSets>

@@ -22,7 +22,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.log4j.Logger;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.util.Base64;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.security.Key;
@@ -60,17 +60,11 @@ public class RangerSafenetKeySecure implements RangerKMSMKI {
 		providerType = conf.get(PROVIDER, "SunPKCS11");
 		adp = conf.get(KEYSECURE_LOGIN);
 		pkcs11CfgFilePath = conf.get(CFGFILEPATH);
-		/*
-		 * Method sun.security.pkcs11.SunPKCS11 is supported till Java 8.
-		 * Provider.configure() method is available from Java 9 onwards and does not have Backward compatibility.
-		 * We need to remove Java 8 scenario and keep only Java 9+ once we completely upgrade to JAVA 9+.
-		 * */
+
 		try {
 			int javaVersion = getJavaVersion();
-			/*Minimum java requirement for Ranger KMS is Java 8 and Maximum java supported by Ranger KMS is Java 11*/
-			if(javaVersion == 8){
-				provider = new sun.security.pkcs11.SunPKCS11(pkcs11CfgFilePath);
-			}else if(javaVersion == 9 || javaVersion == 10 || javaVersion == 11){
+
+			if(javaVersion == 11){
 				Class<Provider> cls = Provider.class;
 				Method configureMethod = null;
 				configureMethod = cls.getDeclaredMethod("configure", String.class);
@@ -147,7 +141,7 @@ public class RangerSafenetKeySecure implements RangerKMSMKI {
                                         SecretKey key = (SecretKey) myStore.getKey(alias,
                                                         password.toCharArray());
                                         if (key != null) {
-                                                return Base64.encode(key.getEncoded());
+                                                return new String(Base64.getEncoder().encode(key.getEncoded()));
                                         }
 
                                 }

@@ -75,7 +75,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>${project.parent.basedir}/sample-client/scripts</directory>
+            <directory>../sample-client/scripts</directory>
             <includes>
                 <include>*.sh</include>
                 <include>*.py</include>
@@ -84,7 +84,7 @@
         </fileSet>
         <fileSet>
             <outputDirectory></outputDirectory>
-            <directory>${project.parent.basedir}/sample-client/conf</directory>
+            <directory>../sample-client/conf</directory>
             <includes>
                 <include>*.properties</include>
             </includes>

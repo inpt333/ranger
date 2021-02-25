@@ -72,17 +72,10 @@ RUN yum install -y python3
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-RUN yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel
+RUN yum install -y java-11-openjdk java-11-openjdk-devel
 #ENV JAVA_HOME /etc/alternatives/jre
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk/
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk/
 ENV PATH $JAVA_HOME/bin:$PATH
-
-#Download and install JDK8 from AWS s3's docker-assets 
-#RUN wget https://s3.eu-central-1.amazonaws.com/docker-assets/dist/jdk-8u101-linux-x64.rpm
-#RUN rpm -i jdk-8u101-linux-x64.rpm
-#ENV JAVA_HOME /usr/java/latest
-#ENV  PATH $JAVA_HOME/bin:$PATH
-
 
 ADD https://www.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz.sha512 /tools
 ADD http://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz /tools
